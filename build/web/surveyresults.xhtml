@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="styles.css" />
+        <title>Survey Results</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form  id="surveyResults">
+                <div class="header">Survey Admin </div>
+                <table style="width:100%;height:600px">
+                    <tr>
+                        <td class="menu">
+                            <h4>User  : ${sessionScope.uname}</h4>
+                            <h:commandLink value="Log out" action="#{loginBean.logout()}"/>
+                            <p/>
+                            &nbsp;
+                            <p/>
+                            <a href="home.xhtml">Home</a>
+                            <p/>
+                            <a href="home.xhtml">List Topics</a>
+                            <p/>
+                            <a href="addtopic.xhtml">Add New Topic</a>
+                        </td>
+                        <td style="vertical-align: top">
+                            <h2>Survey Results</h2>
+                            <h:dataTable  value="#{topic.surveyResults}" var="o" border="1" width="100%">
+                                <h:column>
+                                    <f:facet name="header"><f:verbatim>Question</f:verbatim> </f:facet>
+                                    <h:outputText value="#{o.question}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> <f:verbatim>Option1</f:verbatim> </f:facet>
+                                    <h:outputText value="#{o.option1}"/>
+                                    : 
+                                    <h:outputText value="#{o.opt1count}"/>%
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> <f:verbatim>Option2</f:verbatim>
+                                    </f:facet>
+                                    <h:outputText value="#{o.option2}"/>
+                                    :
+                                    <h:outputText value="#{o.opt2count}"/>%
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> <f:verbatim>Option3</f:verbatim>
+                                    </f:facet>
+                                    <h:outputText value="#{o.option3}"/>
+                                    :
+                                    <h:outputText value="#{o.opt3count}"/>%
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

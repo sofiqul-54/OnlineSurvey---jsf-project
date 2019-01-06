@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="styles.css" />
+        <title>Add Topic</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form  id="addTopicForm">
+                <div class="header">Survey Admin </div>
+                <table  style="width:100%;height:600px">
+                    <tr>
+                        <td class="menu">
+                            <h4>User  : ${sessionScope.uname}</h4>
+                            <h:commandLink value="Log out" action="#{loginBean.logout()}"/>
+                            <p/>
+                            &nbsp;
+                            <p/>
+                            <a href="home.xhtml">Home</a>
+                            <p/>
+                            <a href="home.xhtml">List Topics</a>
+                            <p/>
+                            <a href="addtopic.xhtml">Add New Topic</a>
+                            <p/>
+                            <a href="feedback.xhtml">Feedback</a>
+                        </td>
+                        <td style="vertical-align: top">
+                            <h2>Topics</h2>
+                            <h:dataTable value="#{topic.topics}" var="o" border="1" width="100%">
+                                <h:column>
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Title" />
+                                    </f:facet>
+                                    <h:outputText value="#{o.title}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Added On" />
+                                    </f:facet>
+                                    <h:outputText value="#{o.addedon}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> 
+                                        <h:outputText value="Added By" />
+                                    </f:facet>
+                                    <h:outputText value="#{o.uname}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;" />
+                                    </f:facet>
+                                    <!--                                    <h:outputLink  value="deletetopic.xhtml" onclick="return confirm('Do you want to delete topic and all its questions?','Confirmation')" >
+                                                                            <h:outputText value="Delete"/>
+                                                                            <f:param name="topicid" value="{o.id}"/>
+                                                                        </h:outputLink>-->
+                                    <h:commandLink value="Delete" action="#{topic.delete(o.id)}"/>
+                                    <br/>
+                                    <h:outputLink value="addquestion.xhtml">
+                                        <h:outputText value="Add Question"/>
+                                        <f:param name="topicid" value="#{o.id}"/>
+                                    </h:outputLink>
+                                    <br/>
+                                    <h:outputLink value="topicquestions.xhtml">
+                                        <h:outputText value="Questions"/>
+                                        <f:param name="topicid" value="#{o.id}"/>
+                                    </h:outputLink>
+                                    <br/>
+                                    <h:outputLink value="surveyresults.xhtml">
+                                        <h:outputText value="Survey Results"/>
+                                        <f:param name="topicid" value="#{o.id}"/>
+                                    </h:outputLink>
+                                </h:column>
+                            </h:dataTable>
+                            
+                        </td>
+                    </tr>
+                </table>
+                
+            </h:form>
+
+        </f:view>
+    </h:body>
+</html>
+
